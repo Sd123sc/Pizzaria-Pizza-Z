@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/pizza-slice');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-tech: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-futuristic: "Orbitron", sans-serif;
+  --font-pizzeria: "Pizza Slice", cursive;
+  
+  --color-background: #FFFFFF;
+  --color-primary: #D32F2F;
+  --color-accent: #2E7D32;
+  --color-surface: #F5F5F5;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-gray-900 font-sans antialiased selection:bg-primary selection:text-white;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-wider text-gray-900;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-gray-200;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95;
+  }
+
+
+  .heat-glow {
+    animation: heat-flicker 3s infinite alternate;
+  }
+
+  .tech-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  .pixel-border {
+    position: relative;
+    border: 2px solid #D32F2F;
+    box-shadow: 4px 4px 0px rgba(46, 125, 50, 1);
+  }
+
+  .glow-red {
+    text-shadow: 0 0 10px rgba(211, 47, 47, 0.2);
+  }
+
+  .glow-green {
+    text-shadow: 0 0 10px rgba(46, 125, 50, 0.2);
+  }
+
+  .glow-white {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  .led-border-red {
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.1);
+    border-color: rgba(211, 47, 47, 0.3);
+  }
+
+  .led-border-green {
+    box-shadow: 0 0 15px rgba(46, 125, 50, 0.1);
+    border-color: rgba(46, 125, 50, 0.3);
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .floating-delayed {
+    animation: floating 3.5s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 10;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.02) 50%, rgba(255, 255, 255, 0) 100%);
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    animation: scanline 6s linear infinite;
+  }
+
+  .form-input {
+    @apply w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 outline-none transition-all duration-300 focus:border-primary focus:bg-white focus:shadow-lg placeholder:text-gray-400;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .glow-card-red {
+    box-shadow: 0 10px 30px rgba(211, 47, 47, 0.1);
+  }
+
+  .glow-card-accent {
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.1);
+  }
+
+  .glow-warm {
+    box-shadow: 0 20px 40px rgba(255, 111, 0, 0.1);
+  }
+
+  .bg-warm-gradient {
+    background: radial-gradient(circle at center, rgba(211, 47, 47, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+  }
+
+  .btn-futuristic {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-accent text-white font-bold py-5 px-12 rounded-full transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 uppercase tracking-[0.2em] text-sm;
+  }
+
+  .btn-futuristic::before {
+    content: "";
+    @apply absolute inset-0 bg-white/20 translate-x-[-100%] skew-x-[-45deg] transition-transform duration-700;
+  }
+
+  .btn-futuristic:hover::before {
+    @apply translate-x-[100%];
+  }
+
+  .btn-shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-shimmer::after {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full -skew-x-12 transition-transform duration-1000;
+  }
+
+  .btn-shimmer:hover::after {
+    @apply translate-x-full;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); }
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s infinite;
+  }
+}
+
+@keyframes scanline {
+  0% { bottom: 100%; }
+  100% { bottom: -100%; }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes heat-flicker {
+  0% { filter: drop-shadow(0 0 5px rgba(211, 47, 47, 0.2)); }
+  50% { filter: drop-shadow(0 0 15px rgba(211, 47, 47, 0.4)); }
+  100% { filter: drop-shadow(0 0 8px rgba(211, 47, 47, 0.3)); }
+}
+
+@keyframes steam {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 0.2; }
+  100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+}
+
+.steam-effect {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  filter: blur(10px);
+  pointer-events: none;
+  animation: steam 4s infinite;
+}
+
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CCC;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D32F2F;
+}
